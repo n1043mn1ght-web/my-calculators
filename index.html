@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 1. CANONICAL (Защита от дублей при переезде) -->
-    <link rel="canonical" href="https://n1043mn1ght-web.github.io/my-calculators/">
+    <!-- 1. CANONICAL (Защита от дублей при переезде на домен) -->
+    <link rel="canonical" href="https://n1043mn1ght-web.github.io">
     
-    <!-- 2. FAVICON -->
+    <!-- 2. FAVICON (Принудительное обновление иконки через v=2) -->
     <link rel="icon" href="https://fonts.gstatic.com" type="image/svg+xml">
+    <link rel="shortcut icon" href="https://fonts.gstatic.com">
     
     <!-- 3. SEO & SOCIAL -->
     <title>SmartCalc — Professional Mortgage, Percent & Age Tools</title>
@@ -16,17 +17,17 @@
     <meta property="og:title" content="SmartCalc — Professional Mortgage & Financial Tools">
     <meta property="og:description" content="Calculate your mortgage, age, and percentages instantly with our high-precision tools.">
     <meta property="og:image" content="https://fonts.gstatic.com">
-    <meta property="og:url" content="https://n1043mn1ght-web.github.io/my-calculators/">
+    <meta property="og:url" content="https://n1043mn1ght-web.github.io">
     <meta property="og:type" content="website">
 
-    <!-- 4. JSON-LD (Микроразметка для Google) -->
+    <!-- 4. JSON-LD (Микроразметка для роботов Google) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FinancialCalculator",
       "name": "SmartCalc Financial Suite",
       "description": "Professional tools for mortgage, percentage and age calculations.",
-      "url": "https://n1043mn1ght-web.github.io/my-calculators/"
+      "url": "https://n1043mn1ght-web.github.io"
     }
     </script>
 
@@ -62,18 +63,18 @@
                 <!-- Mortgage Calculator Section -->
                 <div id="loan-calc" class="calc-section block">
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4">Mortgage Payment Calculator</h2>
+                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4 text-[#003366]">Mortgage Payment Calculator</h2>
                         <div class="grid md:grid-cols-2 gap-6">
                             <div class="form-group">
-                                <label>Home Price / Loan Amount ($)</label>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Home Price / Loan Amount ($)</label>
                                 <input type="number" id="amount" value="300000" oninput="calcLoan()" class="main-input">
                             </div>
                             <div class="form-group">
-                                <label>Annual Interest Rate (%)</label>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Annual Interest Rate (%)</label>
                                 <input type="number" id="rate" value="5.5" step="0.1" oninput="calcLoan()" class="main-input">
                             </div>
                             <div class="form-group">
-                                <label>Loan Term (Years)</label>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Loan Term (Years)</label>
                                 <input type="number" id="term" value="30" oninput="calcLoan()" class="main-input">
                             </div>
                         </div>
@@ -83,13 +84,13 @@
                 <!-- Percentage Calculator Section -->
                 <div id="percent-calc" class="calc-section hidden">
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4">Percentage Calculator</h2>
+                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4 text-[#003366]">Percentage Calculator</h2>
                         <div class="space-y-6">
                             <div class="flex flex-wrap items-center text-lg">
                                 <span>What is</span>
-                                <input type="number" id="p-val" value="10" oninput="calcPercent()" class="inline-input mx-3">
+                                <input type="number" id="p-val" value="10" oninput="calcPercent()" class="inline-input mx-3 p-2 border rounded">
                                 <span>% of</span>
-                                <input type="number" id="p-total" value="200" oninput="calcPercent()" class="inline-input mx-3">
+                                <input type="number" id="p-total" value="200" oninput="calcPercent()" class="inline-input mx-3 p-2 border rounded">
                                 <span class="font-bold">?</span>
                             </div>
                         </div>
@@ -99,7 +100,7 @@
                 <!-- Age Calculator Section -->
                 <div id="age-calc" class="calc-section hidden">
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4">Age & Date Calculator</h2>
+                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4 text-[#003366]">Age & Date Calculator</h2>
                         <div class="max-w-sm">
                             <label class="block text-sm font-bold text-gray-600 mb-2 uppercase">Date of Birth</label>
                             <input type="date" id="birthdate" oninput="calcAge()" class="main-input">
@@ -110,7 +111,7 @@
                 <!-- БЛОК FAQ -->
                 <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
                     <h3 class="text-xl font-bold text-[#003366] mb-6 border-b pb-4">Frequently Asked Questions</h3>
-                    <div class="space-y-6">
+                    <div class="space-y-6 text-justify">
                         <div>
                             <h4 class="font-bold text-gray-800">How do interest rates affect my monthly payment?</h4>
                             <p class="text-gray-600 text-sm mt-1">Even a 1% difference in your interest rate can result in thousands of dollars saved or lost over the life of a 30-year mortgage. Higher rates increase your monthly commitment and the total cost of the loan.</p>
@@ -120,7 +121,7 @@
                             <p class="text-gray-600 text-sm mt-1">Calculating age manually can be tricky due to leap years and varying month lengths. Our tool uses standard UTC time logic to provide precision down to the day.</p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-800">Is my data safe with SmartCalc?</h4>
+                            <h4 class="font-bold text-gray-800 text-[#003366]">Is my data safe with SmartCalc?</h4>
                             <p class="text-gray-600 text-sm mt-1 italic">Yes. All calculations are performed directly in your browser. No financial or personal data is transmitted to our servers or stored anywhere.</p>
                         </div>
                     </div>
@@ -139,7 +140,7 @@
                     <!-- ПАРТНЕРСКИЙ БЛОК: Скрыт (удалите 'hidden' для активации) -->
                     <div id="partner-offer" class="mt-8 pt-8 border-t border-gray-100 hidden">
                         <div class="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-100 text-left">
-                            <p class="text-[10px] font-bold text-blue-600 uppercase mb-2 tracking-tighter text-left">Sponsored Offer</p>
+                            <p class="text-[10px] font-bold text-blue-600 uppercase mb-2 tracking-tighter">Sponsored Offer</p>
                             <p class="text-xs text-gray-700 mb-3 font-medium text-left leading-tight">Looking for a loan? Get personalized mortgage rates from top lenders in minutes.</p>
                             <a href="#" target="_blank" class="block w-full bg-[#ff9900] text-white text-center font-bold py-3 rounded shadow-sm hover:bg-[#e68a00] transition uppercase text-[10px] tracking-widest">Check Rates Now</a>
                         </div>
