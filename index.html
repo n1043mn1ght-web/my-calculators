@@ -3,105 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://fonts.gstatic.com" type="image/svg+xml">
-    <title>SmartCalc Invest — Professional Compound Interest Calculator</title>
-    <meta name="description" content="Calculate your investment growth with our professional compound interest tool. Plan your retirement and wealth building strategy. 100% accurate.">
     
-    <!-- Advanced Schema for Google -->
+    <!-- 1. CANONICAL (Защита при переезде на домен) -->
+    <link rel="canonical" href="https://n1043mn1ght-web.github.io">
+    
+    <!-- 2. FAVICON (Принудительное обновление кэша через ?v=1) -->
+    <link rel="icon" href="https://fonts.gstatic.com" type="image/svg+xml">
+    <link rel="shortcut icon" href="https://fonts.gstatic.com">
+    
+    <!-- 3. SEO & SOCIAL -->
+    <title>SmartCalc — Professional Mortgage, Percent & Age Tools</title>
+    <meta name="description" content="Calculate mortgage payments, interest rates, percentages, and exact age with our professional-grade tools. Accurate, fast, and 100% free.">
+    <meta property="og:title" content="SmartCalc — Professional Mortgage & Financial Tools">
+    <meta property="og:description" content="Calculate your mortgage, age, and percentages instantly with our high-precision tools.">
+    <meta property="og:image" content="https://fonts.gstatic.com">
+    <meta property="og:url" content="https://n1043mn1ght-web.github.io">
+    <meta property="og:type" content="website">
+
+    <!-- 4. JSON-LD (Паспорт сайта для роботов Google) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FinancialCalculator",
-      "name": "SmartCalc Compound Interest Engine",
-      "category": "Investment Tool"
+      "name": "SmartCalc Financial Suite",
+      "description": "Professional tools for mortgage, percentage and age calculations.",
+      "url": "https://n1043mn1ght-web.github.io"
     }
     </script>
 
+    <!-- Design & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .input-focus:focus { border-color: #10b981; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); outline: none; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#F9FAFB] text-[#111827]">
-    <nav class="bg-white border-b p-6">
-        <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-[#10b981] rounded-xl flex items-center justify-center text-white font-bold text-xl uppercase">i</div>
-                <span class="text-xl font-bold text-[#10b981]">SmartCalc <span class="text-gray-400 font-light text-sm">Invest</span></span>
+<body class="bg-[#F4F7F9] text-[#333] antialiased">
+    <!-- Header -->
+    <header class="bg-[#003366] text-white py-6 shadow-md">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="location.reload()">
+                <div class="w-10 h-10 bg-white rounded flex items-center justify-center shadow-inner">
+                    <span class="text-[#003366] font-bold text-2xl">$</span>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-white">SmartCalc <span class="font-light text-blue-200 text-lg">Financial</span></h1>
             </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium uppercase tracking-wider text-white">
+                <button onclick="showCalc('loan')" class="hover:text-blue-300 transition">Mortgage</button>
+                <button onclick="showCalc('percent')" class="hover:text-blue-300 transition">Percentage</button>
+                <button onclick="showCalc('age')" class="hover:text-blue-300 transition">Age Tool</button>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <main class="max-w-4xl mx-auto py-12 px-6">
-        <div class="bg-white rounded-[2rem] shadow-xl p-8 md:p-12 border border-gray-100">
-            <h2 class="text-3xl font-bold mb-10 text-center">Wealth Projection Engine</h2>
+    <main class="max-w-5xl mx-auto px-4 py-12">
+        <div class="grid lg:grid-cols-3 gap-8">
             
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Initial Investment ($)</label>
-                        <input type="number" id="principal" value="10000" oninput="calculate()" class="w-full p-4 bg-gray-50 rounded-2xl input-focus transition-all text-xl font-semibold">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Monthly Contribution ($)</label>
-                        <input type="number" id="monthly" value="500" oninput="calculate()" class="w-full p-4 bg-gray-50 rounded-2xl input-focus transition-all text-xl font-semibold">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Years</label>
-                            <input type="number" id="years" value="10" oninput="calculate()" class="w-full p-4 bg-gray-50 rounded-2xl input-focus transition-all text-xl font-semibold">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Rate (%)</label>
-                            <input type="number" id="rate" value="8" oninput="calculate()" class="w-full p-4 bg-gray-50 rounded-2xl input-focus transition-all text-xl font-semibold">
+            <!-- Left Side: Inputs -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <div id="loan-calc" class="calc-section block">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4">Mortgage Payment Calculator</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label>Home Price / Loan Amount ($)</label>
+                                <input type="number" id="amount" value="300000" oninput="calcLoan()" class="main-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Annual Interest Rate (%)</label>
+                                <input type="number" id="rate" value="5.5" step="0.1" oninput="calcLoan()" class="main-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Loan Term (Years)</label>
+                                <input type="number" id="term" value="30" oninput="calcLoan()" class="main-input">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-[#ECFDF5] rounded-[2rem] p-10 flex flex-col justify-center text-center">
-                    <span class="text-xs font-bold text-[#059669] uppercase tracking-widest mb-4">Projected Balance</span>
-                    <div id="result" class="text-5xl font-bold text-[#065F46] tabular-nums">$0</div>
-                    <p class="text-sm text-[#059669] mt-4 opacity-70">Calculated with monthly compounding</p>
+                <div id="percent-calc" class="calc-section hidden">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4">Percentage Calculator</h2>
+                        <div class="space-y-6">
+                            <div class="flex flex-wrap items-center text-lg">
+                                <span>What is</span>
+                                <input type="number" id="p-val" value="10" oninput="calcPercent()" class="inline-input mx-3">
+                                <span>% of</span>
+                                <input type="number" id="p-total" value="200" oninput="calcPercent()" class="inline-input mx-3">
+                                <span class="font-bold">?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="age-calc" class="calc-section hidden">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4">Age & Date Calculator</h2>
+                        <div class="max-w-sm">
+                            <label class="block text-sm font-bold text-gray-600 mb-2 uppercase">Date of Birth</label>
+                            <input type="date" id="birthdate" oninput="calcAge()" class="main-input">
+                        </div>
+                    </div>
+                </div>
+
+                <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                    <h3 class="text-xl font-bold text-[#003366] mb-6 border-b pb-4 text-left">Frequently Asked Questions</h3>
+                    <div class="space-y-6">
+                        <div class="text-left">
+                            <h4 class="font-bold text-gray-800 text-left">How do interest rates affect my monthly payment?</h4>
+                            <p class="text-gray-600 text-sm mt-1 text-left">Even a 1% difference in your interest rate can result in thousands of dollars saved or lost over the life of a 30-year mortgage. Higher rates increase your monthly commitment and the total cost of the loan.</p>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-gray-800 text-left">Why use a digital age calculator?</h4>
+                            <p class="text-gray-600 text-sm mt-1 text-left">Calculating age manually can be tricky due to leap years and varying month lengths. Our tool uses standard UTC time logic to provide precision down to the day.</p>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-gray-800 text-left">Is my data safe with SmartCalc?</h4>
+                            <p class="text-gray-600 text-sm mt-1 italic text-left">Yes. All calculations are performed directly in your browser. No financial or personal data is transmitted to our servers or stored anywhere.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-lg border-t-4 border-[#003366] p-8 sticky top-28">
+                    <div id="result-container" class="text-center">
+                        <p id="result-label" class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-2">Monthly Payment</p>
+                        <div id="main-result" class="text-4xl font-bold text-[#003366] mb-2 tabular-nums">$1,703.37</div>
+                        <p id="sub-result" class="text-gray-500 text-sm font-medium">Principal & Interest</p>
+                    </div>
+
+                    <div id="partner-offer" class="mt-8 pt-8 border-t border-gray-100 hidden">
+                        <div class="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-100 text-left">
+                            <p class="text-[10px] font-bold text-blue-600 uppercase mb-2 tracking-tighter text-left">Sponsored Offer</p>
+                            <p class="text-xs text-gray-700 mb-3 font-medium text-left leading-tight text-left">Looking for a loan? Get personalized mortgage rates from top lenders in minutes.</p>
+                            <a href="#" target="_blank" class="block w-full bg-[#ff9900] text-white text-center font-bold py-3 rounded shadow-sm hover:bg-[#e68a00] transition uppercase text-[10px] tracking-widest">Check Rates Now</a>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-gray-100">
+                        <button onclick="window.print()" class="w-full bg-[#003366] text-white font-bold py-3 rounded hover:bg-blue-800 transition shadow-md uppercase text-[10px] tracking-widest">Print Full Report</button>
+                    </div>
                 </div>
             </div>
+
         </div>
-
-        <!-- SEO/FAQ Section -->
-        <section class="mt-16 space-y-8">
-            <div class="grid md:grid-cols-2 gap-8 text-sm text-gray-600">
-                <div class="bg-white p-6 rounded-2xl border border-gray-100">
-                    <h3 class="font-bold text-gray-900 mb-2 italic">What is Compound Interest?</h3>
-                    <p>Compound interest is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-gray-100">
-                    <h3 class="font-bold text-gray-900 mb-2 italic">The Rule of 72</h3>
-                    <p>A simple way to estimate how long it takes for your investment to double: divide 72 by your annual interest rate.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <script>
-        function calculate() {
-            const principal = parseFloat(document.getElementById('principal').value) || 0;
-            const monthly = parseFloat(document.getElementById('monthly').value) || 0;
-            const years = parseFloat(document.getElementById('years').value) || 0;
-            const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
-            const months = years * 12;
+    <footer class="bg-gray-100 border-t mt-20 py-10">
+        <div class="max-w-5xl mx-auto px-4 text-center text-sm text-gray-500">
+            <p>&copy; 2025 SmartCalc Global Financial Suite. Accuracy verified.</p>
+        </div>
+    </footer>
 
-            let total = principal * Math.pow(1 + rate, months);
-            
-            if (rate > 0) {
-                total += monthly * (Math.pow(1 + rate, months) - 1) / rate;
-            } else {
-                total += monthly * months;
-            }
-
-            document.getElementById('result').innerText = '$' + Math.round(total).toLocaleString();
-        }
-        window.onload = calculate;
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
