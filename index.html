@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartCalc — Professional Financial & Utility Tools</title>
-    <meta name="description" content="Calculate mortgage payments, interest, percentages, and exact age with our professional-grade tools. Accurate, fast, and free.">
+    
+    <!-- Primary SEO Tags -->
+    <title>SmartCalc — Professional Mortgage, Percent & Age Tools</title>
+    <meta name="description" content="Calculate mortgage payments, interest rates, percentages, and exact age with our professional-grade tools. Accurate, fast, and 100% free.">
+    
+    <!-- Social Media Meta Tags (Open Graph) -->
+    <meta property="og:title" content="SmartCalc — Professional Mortgage & Financial Tools">
+    <meta property="og:description" content="Calculate your mortgage, age, and percentages instantly with our high-precision tools.">
+    <meta property="og:image" content="https://n1043mn1ght-web.github.io">
+    <meta property="og:url" content="https://n1043mn1ght-web.github.io">
+    <meta property="og:type" content="website">
+
+    <!-- Design & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -84,11 +95,16 @@
                 <!-- Expert Content (SEO) -->
                 <article class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 prose max-w-none">
                     <h3 class="text-xl font-bold text-[#003366]">Financial Accuracy & Planning</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">Our calculators use industry-standard formulas used by banking institutions worldwide. Whether you're calculating an <strong>amortization schedule</strong> for a new home or simple <strong>interest growth</strong> for your business, precision is our top priority. Understanding your monthly debt-to-income ratio starts with accurate data.</p>
+                    <p class="text-gray-600 leading-relaxed text-sm italic">
+                        All calculations are performed locally in your browser for maximum privacy.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-sm mt-4">
+                        Our calculators use industry-standard formulas used by banking institutions worldwide. Whether you're calculating an <strong>amortization schedule</strong> for a new home or simple <strong>interest growth</strong> for your business, precision is our top priority. Understanding your monthly debt-to-income ratio starts with accurate data. Use our free tools to estimate payments, calculate percentages for discounts, or find your exact age in days.
+                    </p>
                 </article>
             </div>
 
-            <!-- Right Side: Results Panel -->
+            <!-- Right Side: Results Panel & Monetization -->
             <div class="lg:col-span-1">
                 <div class="bg-white rounded-xl shadow-lg border-t-4 border-[#003366] p-8 sticky top-28">
                     <div id="result-container" class="text-center">
@@ -96,8 +112,15 @@
                         <div id="main-result" class="text-4xl font-bold text-[#003366] mb-2">$1,703.37</div>
                         <p id="sub-result" class="text-gray-500 text-sm font-medium">Principal & Interest</p>
                     </div>
+
+                    <!-- MONETIZATION BLOCK (CPA) -->
                     <div class="mt-8 pt-8 border-t border-gray-100">
-                        <button onclick="window.print()" class="w-full bg-[#003366] text-white font-bold py-3 rounded hover:bg-blue-800 transition shadow-md uppercase text-xs tracking-widest">Print Report</button>
+                        <div class="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-100">
+                            <p class="text-[10px] font-bold text-blue-600 uppercase mb-2 tracking-tighter">Sponsored Offer</p>
+                            <p class="text-xs text-gray-700 mb-3 font-medium text-left">Looking for a loan? Get personalized mortgage rates from top lenders in minutes.</p>
+                            <a href="#" target="_blank" id="offer-link" class="block w-full bg-[#ff9900] text-white text-center font-bold py-3 rounded shadow-sm hover:bg-[#e68a00] transition uppercase text-[10px] tracking-widest">Check Rates Now</a>
+                        </div>
+                        <button onclick="window.print()" class="w-full bg-[#003366] text-white font-bold py-3 rounded hover:bg-blue-800 transition shadow-md uppercase text-[10px] tracking-widest">Print Full Report</button>
                     </div>
                 </div>
             </div>
@@ -107,7 +130,7 @@
 
     <footer class="bg-gray-100 border-t mt-20 py-10">
         <div class="max-w-5xl mx-auto px-4 text-center text-sm text-gray-500">
-            <p>&copy; 2025 SmartCalc Professional Financial Suite. For informational purposes only.</p>
+            <p>&copy; 2025 SmartCalc Professional Financial Suite. For informational purposes only. No data is stored on our servers.</p>
         </div>
     </footer>
 
