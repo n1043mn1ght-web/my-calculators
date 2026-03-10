@@ -2,122 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invest Pro — SmartCalc™ Financial Analytics</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Invest Pro — SmartCalc™ Financial Forecasting & Wealth Engine</title>
     <link rel="icon" type="image/jpeg" href="pulse.jpg">
+    
+    <meta name="description" content="Professional compound interest engine. Calculate future wealth, monthly contributions, and investment growth with SmartCalc™ precision.">
+    
     <style>
-        :root {
-            --primary: #3b82f6; /* Новый благородный синий */
-            --primary-soft: #eff6ff;
-            --dark: #0f172a; /* Глубокий темный */
-            --bg: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; }
-
-        header { background: var(--dark); color: white; padding: 3.5rem 1rem; text-align: center; }
-        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        :root { --primary: #3b82f6; --dark: #0f172a; --bg: #f1f5f9; --text: #1e293b; --muted: #64748b; }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; font-family: 'Inter', system-ui, sans-serif; }
+        body { margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; font-size: 14px; }
+        
+        header { background: var(--dark); color: white; padding: 0.6rem; text-align: center; border-bottom: 2px solid var(--primary); }
+        .logo { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         .logo span { color: var(--primary); }
 
-        .wrapper { max-width: 1100px; margin: -50px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
-
-        .glass-card { background: white; border-radius: 24px; padding: 45px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        /* CALCULATOR SECTION */
+        .wrapper { max-width: 950px; margin: 10px auto; padding: 0 10px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 12px; }
+        .card { background: white; border-radius: 16px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
         
-        .control-group { margin-bottom: 30px; }
-        .label-box { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-        .label-box label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .current-val { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
+        h2 { font-size: 0.8rem; margin: 0 0 12px 0; text-transform: uppercase; color: var(--muted); border-left: 3px solid var(--primary); padding-left: 8px; }
+        .control-group { margin-bottom: 12px; }
+        .label-box { display: flex; justify-content: space-between; margin-bottom: 2px; }
+        label { font-size: 0.6rem; font-weight: 800; color: var(--muted); text-transform: uppercase; }
+        .val { font-size: 1rem; font-weight: 800; }
 
-        input[type=range] { width: 100%; appearance: none; background: #e2e8f0; height: 8px; border-radius: 10px; outline: none; }
-        input[type=range]::-webkit-slider-thumb { 
-            appearance: none; width: 26px; height: 26px; background: white; border: 4px solid var(--primary); 
-            border-radius: 50%; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-        }
+        input[type=range] { width: 100%; appearance: none; background: #e2e8f0; height: 4px; border-radius: 10px; outline: none; margin: 8px 0; }
+        input[type=range]::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; background: white; border: 3px solid var(--primary); border-radius: 50%; cursor: pointer; }
 
-        .result-panel { text-align: center; background: white; border-radius: 24px; padding: 50px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-top: 6px solid var(--primary); height: fit-content; position: sticky; top: 20px; }
-        .score-label { font-weight: 800; color: var(--text-muted); letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; }
-        .score-num { font-size: 4rem; font-weight: 900; color: var(--dark); letter-spacing: -3px; margin: 10px 0; line-height: 1; }
-        .profit-badge { display: inline-block; padding: 8px 24px; border-radius: 100px; font-weight: 700; font-size: 0.95rem; background: var(--primary-soft); color: var(--primary); }
+        .res-panel { text-align: center; display: flex; flex-direction: column; justify-content: center; }
+        .total-num { font-size: 2.8rem; font-weight: 900; color: var(--dark); margin: 0; letter-spacing: -2px; line-height: 1; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 50px; font-weight: 800; background: #eff6ff; color: var(--primary); font-size: 0.75rem; margin-top: 5px; }
 
-        .btn-action { width: 100%; margin-top: 35px; padding: 18px; border: none; border-radius: 14px; background: var(--dark); color: white; font-weight: 700; cursor: pointer; transition: var(--transition); }
-        .btn-action:hover { background: var(--primary); transform: translateY(-2px); }
+        .comp-info { margin-top: 12px; font-size: 0.75rem; color: var(--muted); padding: 8px; background: #f8fafc; border-radius: 8px; }
+        .chart { height: 6px; background: #e2e8f0; border-radius: 10px; margin: 12px 0 6px; display: flex; overflow: hidden; }
+        #ch-p { background: var(--dark); transition: 0.5s; }
+        #ch-i { background: var(--primary); transition: 0.5s; }
 
-        .eco-section { grid-column: span 2; padding: 40px; background: white; border-radius: 24px; border: 1px solid #e2e8f0; }
-        .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
-        .eco-link { padding: 20px; border: 1px solid #f1f5f9; border-radius: 16px; text-decoration: none; color: inherit; transition: 0.3s; }
-        .eco-link:hover { border-color: var(--primary); background: var(--primary-soft); transform: translateY(-3px); }
+        /* SEO ARTICLE SECTION */
+        .seo-article { max-width: 950px; margin: 20px auto; padding: 25px; background: white; border-radius: 16px; border: 1px solid #e2e8f0; line-height: 1.7; color: #475569; }
+        .seo-article h2 { font-size: 1.4rem; color: var(--dark); border: none; padding: 0; margin-bottom: 15px; text-transform: none; }
+        .seo-article h3 { font-size: 1.1rem; color: var(--dark); margin-top: 20px; }
+        .seo-article p { margin-bottom: 15px; }
 
-        @media (max-width: 850px) { .wrapper { grid-template-columns: 1fr; } .score-num { font-size: 3rem; } }
+        .eco-nav { grid-column: span 2; display: flex; justify-content: center; gap: 15px; padding: 6px; border-top: 1px solid #e2e8f0; }
+        .eco-nav a { font-size: 0.6rem; font-weight: 800; color: var(--muted); text-decoration: none; text-transform: uppercase; }
+        .btn { width: 100%; margin-top: 12px; padding: 10px; border: none; border-radius: 8px; background: var(--dark); color: white; font-weight: 700; cursor: pointer; }
+
+        @media (max-width: 700px) { .wrapper { grid-template-columns: 1fr; } .total-num { font-size: 2.4rem; } }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">Smart<span>Calc</span> Invest</div>
-</header>
+<header><div class="logo">Smart<span>Calc</span> Invest</div></header>
 
 <main class="wrapper">
-    <section class="glass-card">
+    <section class="card">
+        <h2>Parameters</h2>
         <div class="control-group">
-            <div class="label-box"><label>Initial Capital</label><span class="current-val" id="dep-txt">$5,000</span></div>
-            <input type="range" id="dep-in" min="1000" max="100000" step="1000" value="5000">
+            <div class="label-box"><label>Initial Deposit</label><span class="val" id="d-t">$5,000</span></div>
+            <input type="range" id="d-i" min="100" max="50000" step="100" value="5000">
         </div>
         <div class="control-group">
-            <div class="label-box"><label>Annual Return (%)</label><span class="current-val" id="int-txt">10%</span></div>
-            <input type="range" id="int-in" min="1" max="40" step="0.5" value="10">
+            <div class="label-box"><label>Monthly Addition</label><span class="val" id="m-t">$100</span></div>
+            <input type="range" id="m-i" min="0" max="5000" step="50" value="100">
         </div>
         <div class="control-group">
-            <div class="label-box"><label>Duration</label><span class="current-val" id="year-txt">10 Years</span></div>
-            <input type="range" id="year-in" min="1" max="50" step="1" value="10">
+            <div class="label-box"><label>Return Rate (%)</label><span class="val" id="r-t">8%</span></div>
+            <input type="range" id="r-i" min="1" max="30" step="0.1" value="8">
         </div>
-
-        <div style="background: var(--primary-soft); padding: 20px; border-radius: 16px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
-            <p style="margin: 0; color: var(--text-main); font-weight: 600;">Wealth Projection</p>
-            <p id="multiplier" style="margin: 5px 0 0 0; color: var(--primary); font-weight: 800; font-size: 1.2rem;">2.6x Capital Multiplier</p>
+        <div class="control-group">
+            <div class="label-box"><label>Investment Period</label><span class="val" id="y-t">10y</span></div>
+            <input type="range" id="y-i" min="1" max="40" step="1" value="10">
         </div>
     </section>
 
-    <section class="result-panel">
-        <div class="score-label">Future Value</div>
-        <div class="score-num" id="total-val">$12,968</div>
-        <div class="profit-badge" id="profit-txt">+ $7,968 Profit</div>
-        <button class="btn-action" onclick="window.print()">Export Financial Plan</button>
+    <section class="card res-panel">
+        <label>Future Wealth Projection</label>
+        <div class="total-num" id="res-v">$0</div>
+        <div class="badge" id="prof-v">+$0 Profit</div>
+        <div class="comp-info" id="comp-msg">Smart Investing Analysis...</div>
+        <div class="chart"><div id="ch-p"></div><div id="ch-i"></div></div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.5rem; font-weight: 800; opacity: 0.6;">
+            <span>● YOUR CASH</span><span>● COMPOUND INTEREST</span>
+        </div>
+        <button class="btn" onclick="window.print()">GENERATE REPORT</button>
     </section>
 
-    <article class="eco-section">
-        <h3 style="margin-top:0">SmartCalc™ Ecosystem</h3>
-        <div class="eco-grid">
-            <a href="https://n1043mn1ght-web.github.io" class="eco-link"><strong>Health Pro</strong><br><small>Precision BMI analytics</small></a>
-            <a href="https://n1043mn1ght-web.github.io" class="eco-link"><strong>Utilities Hub</strong><br><small>Daily essential tools</small></a>
-        </div>
-    </article>
+    <nav class="eco-nav">
+        <a href="https://n1043mn1ght-web.github.io">● Health Pro</a>
+        <a href="https://n1043mn1ght-web.github.io">● Utilities Hub</a>
+        <a href="#">● Loan Pro</a>
+    </nav>
 </main>
 
+<!-- 12/10 SEO ENGINE -->
+<article class="seo-article">
+    <h2>Why Compound Interest is the Ultimate Wealth Engine</h2>
+    <p>Compound interest is the addition of interest to the principal sum of a loan or deposit—it is <strong>interest on interest</strong>. This SmartCalc™ tool helps you visualize how even small monthly additions can lead to exponential growth over long horizons.</p>
+    
+    <h3>The Power of Consistency</h3>
+    <p>By using our <em>Monthly Addition</em> feature, you can see how regular investing outperforms large one-time deposits. For instance, a return rate of 8-10% (the historical average of the S&P 500) can turn modest savings into significant retirement capital through the "Rule of 72" dynamics.</p>
+    
+    <h3>Financial Precision & Privacy</h3>
+    <p>Unlike other platforms, SmartCalc™ Invest Pro processes all financial simulations locally on your device. We don't store your sensitive data. Whether you are calculating ROI for a savings account or forecasting market growth, our bank-grade math ensures surgical accuracy.</p>
+</article>
+
+<footer>
+    <p style="text-align:center; padding: 20px; font-size: 0.7rem; color: var(--muted);">&copy; 2024 SmartCalc™ Ecosystem. Professional Financial Tools.</p>
+</footer>
+
 <script>
-    const depIn = document.getElementById('dep-in'), intIn = document.getElementById('int-in'), yearIn = document.getElementById('year-in'),
-          depTxt = document.getElementById('dep-txt'), intTxt = document.getElementById('int-txt'), yearTxt = document.getElementById('year-txt'),
-          totalVal = document.getElementById('total-val'), profitTxt = document.getElementById('profit-txt'), multTxt = document.getElementById('multiplier');
+    const d_i = document.getElementById('d-i'), m_i = document.getElementById('m-i'), 
+          r_i = document.getElementById('r-i'), y_i = document.getElementById('y-i');
 
     function update() {
-        const p = parseFloat(depIn.value), r = parseFloat(intIn.value) / 100, t = parseFloat(yearIn.value);
-        const fv = p * Math.pow((1 + r), t);
-        const profit = fv - p;
+        const P = parseFloat(d_i.value), PMT = parseFloat(m_i.value), 
+              r = (parseFloat(r_i.value)/100)/12, n = parseFloat(y_i.value)*12;
 
-        depTxt.innerText = '$' + p.toLocaleString();
-        intTxt.innerText = (r * 100).toFixed(1) + '%';
-        yearTxt.innerText = t + ' Years';
-        multTxt.innerText = (fv/p).toFixed(1) + 'x Capital Multiplier';
+        let fv = P * Math.pow(1 + r, n) + (r > 0 ? PMT * (Math.pow(1 + r, n) - 1) / r : PMT * n);
+        const invested = P + (PMT * n);
+        const profit = fv - invested;
 
-        totalVal.innerText = '$' + Math.round(fv).toLocaleString();
-        profitTxt.innerText = '+ $' + Math.round(profit).toLocaleString() + ' Profit';
+        document.getElementById('d-t').innerText = '$' + P.toLocaleString();
+        document.getElementById('m-t').innerText = '$' + PMT.toLocaleString();
+        document.getElementById('r-t').innerText = parseFloat(r_i.value).toFixed(1) + '%';
+        document.getElementById('y-t').innerText = y_i.value + 'y';
+
+        document.getElementById('res-v').innerText = '$' + Math.round(fv).toLocaleString();
+        document.getElementById('prof-v').innerText = '+$' + Math.round(profit).toLocaleString() + ' PROFIT';
+        
+        document.getElementById('comp-msg').innerHTML = `Cash: <b>$${invested.toLocaleString()}</b> | Profit: <b>$${Math.round(profit).toLocaleString()}</b>`;
+
+        const pPerc = (invested / fv) * 100;
+        document.getElementById('ch-p').style.width = pPerc + '%';
+        document.getElementById('ch-i').style.width = (100 - pPerc) + '%';
     }
 
-    [depIn, intIn, yearIn].forEach(el => el.addEventListener('input', update));
+    [d_i, m_i, r_i, y_i].forEach(el => el.addEventListener('input', update));
     update();
 </script>
 </body>
