@@ -3,98 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://n1043mn1ght-web.github.io">
+    <title>Invest Pro — SmartCalc™ Financial Analytics</title>
     
-    <!-- ПРЯМАЯ ССЫЛКА НА ВАШ ФАЙЛ ИКОНКИ -->
-    <link rel="icon" type="image/png" href="dollar.png">
-    <link rel="apple-touch-icon" href="dollar.png">
+    <link rel="icon" type="image/jpeg" href="pulse.jpg">
+    <style>
+        :root {
+            --primary: #3b82f6; /* Новый благородный синий */
+            --primary-soft: #eff6ff;
+            --dark: #0f172a; /* Глубокий темный */
+            --bg: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    <title>SmartCalc Financial — Mortgage, Percent & Age Tools</title>
-    <meta name="description" content="Professional mortgage, interest, and age calculators. Fast, accurate, and 100% free utility tools by SmartCalc Network.">
-    
-    <!-- SEO JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FinancialCalculator",
-      "name": "SmartCalc Financial",
-      "url": "https://n1043mn1ght-web.github.io"
-    }
-    </script>
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; }
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+        header { background: var(--dark); color: white; padding: 3.5rem 1rem; text-align: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        .logo span { color: var(--primary); }
+
+        .wrapper { max-width: 1100px; margin: -50px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
+
+        .glass-card { background: white; border-radius: 24px; padding: 45px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        
+        .control-group { margin-bottom: 30px; }
+        .label-box { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+        .label-box label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .current-val { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
+
+        input[type=range] { width: 100%; appearance: none; background: #e2e8f0; height: 8px; border-radius: 10px; outline: none; }
+        input[type=range]::-webkit-slider-thumb { 
+            appearance: none; width: 26px; height: 26px; background: white; border: 4px solid var(--primary); 
+            border-radius: 50%; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        }
+
+        .result-panel { text-align: center; background: white; border-radius: 24px; padding: 50px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-top: 6px solid var(--primary); height: fit-content; position: sticky; top: 20px; }
+        .score-label { font-weight: 800; color: var(--text-muted); letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; }
+        .score-num { font-size: 4rem; font-weight: 900; color: var(--dark); letter-spacing: -3px; margin: 10px 0; line-height: 1; }
+        .profit-badge { display: inline-block; padding: 8px 24px; border-radius: 100px; font-weight: 700; font-size: 0.95rem; background: var(--primary-soft); color: var(--primary); }
+
+        .btn-action { width: 100%; margin-top: 35px; padding: 18px; border: none; border-radius: 14px; background: var(--dark); color: white; font-weight: 700; cursor: pointer; transition: var(--transition); }
+        .btn-action:hover { background: var(--primary); transform: translateY(-2px); }
+
+        .eco-section { grid-column: span 2; padding: 40px; background: white; border-radius: 24px; border: 1px solid #e2e8f0; }
+        .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
+        .eco-link { padding: 20px; border: 1px solid #f1f5f9; border-radius: 16px; text-decoration: none; color: inherit; transition: 0.3s; }
+        .eco-link:hover { border-color: var(--primary); background: var(--primary-soft); transform: translateY(-3px); }
+
+        @media (max-width: 850px) { .wrapper { grid-template-columns: 1fr; } .score-num { font-size: 3rem; } }
+    </style>
 </head>
-<body class="bg-[#F4F7F9] text-[#333] antialiased">
-    <!-- Header -->
-    <header class="bg-[#003366] text-white py-6 shadow-md">
-        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="location.reload()">
-                <div class="w-10 h-10 bg-white rounded flex items-center justify-center shadow-inner overflow-hidden p-1">
-                    <!-- Иконка в шапке для единства стиля -->
-                    <img src="dollar.png" alt="logo" class="w-full h-full object-contain">
-                </div>
-                <h1 class="text-2xl font-bold tracking-tight text-white">SmartCalc <span class="font-light text-blue-200 text-lg italic uppercase">Financial</span></h1>
-            </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium uppercase tracking-wider text-white">
-                <button onclick="showCalc('loan')" class="hover:text-blue-300 transition">Mortgage</button>
-                <button onclick="showCalc('percent')" class="hover:text-blue-300 transition">Percentage</button>
-                <button onclick="showCalc('age')" class="hover:text-blue-300 transition">Age Tool</button>
-            </nav>
-        </div>
-    </header>
+<body>
 
-    <main class="max-w-5xl mx-auto px-4 py-12">
-        <div class="grid lg:grid-cols-3 gap-8 text-left">
-            <div class="lg:col-span-2 space-y-6">
-                <!-- Mortgage Section -->
-                <div id="loan-calc" class="calc-section block">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4 text-left uppercase tracking-tighter">Mortgage Calculator</h2>
-                        <div class="grid md:grid-cols-2 gap-6 text-left">
-                            <div class="form-group text-left"><label class="block text-xs font-bold mb-2 uppercase text-gray-500">Loan Amount ($)</label><input type="number" id="amount" value="300000" oninput="calcLoan()" class="main-input"></div>
-                            <div class="form-group text-left"><label class="block text-xs font-bold mb-2 uppercase text-gray-500">Interest Rate (%)</label><input type="number" id="rate" value="5.5" step="0.1" oninput="calcLoan()" class="main-input"></div>
-                            <div class="form-group text-left"><label class="block text-xs font-bold mb-2 uppercase text-gray-500">Loan Term (Years)</label><input type="number" id="term" value="30" oninput="calcLoan()" class="main-input"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Percent Section -->
-                <div id="percent-calc" class="calc-section hidden">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4 text-left uppercase tracking-tighter">Percentage Tool</h2>
-                        <div class="flex flex-wrap items-center text-lg">
-                            <span>What is</span><input type="number" id="p-val" value="10" oninput="calcPercent()" class="inline-input mx-3"><span>% of</span><input type="number" id="p-total" value="200" oninput="calcPercent()" class="inline-input mx-3"><b>?</b>
-                        </div>
-                    </div>
-                </div>
-                <!-- Age Section -->
-                <div id="age-calc" class="calc-section hidden">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                        <h2 class="text-2xl font-bold text-[#003366] mb-6 border-b pb-4 text-left uppercase tracking-tighter">Age Calculator</h2>
-                        <div class="max-w-sm"><label class="block text-xs font-bold mb-2 uppercase text-gray-500">Date of Birth</label><input type="date" id="birthdate" oninput="calcAge()" class="main-input"></div>
-                    </div>
-                </div>
-                <!-- FAQ -->
-                <section class="bg-white rounded-xl border border-gray-200 p-8 text-left">
-                    <h3 class="text-xl font-bold text-[#003366] mb-4 uppercase tracking-tighter">Financial FAQ</h3>
-                    <p class="text-sm text-gray-600 mb-4"><b>Privacy:</b> All calculations are performed locally in your browser. We never store your data.</p>
-                    <p class="text-sm text-gray-600 italic"><b>Accuracy:</b> Our formulas follow standard banking methods used by major lenders worldwide.</p>
-                </section>
-            </div>
+<header>
+    <div class="logo">Smart<span>Calc</span> Invest</div>
+</header>
 
-            <!-- Sidebar Result -->
-            <div class="lg:col-span-1">
-                <div class="bg-white rounded-xl shadow-lg border-t-8 border-[#003366] p-8 sticky top-28 text-center">
-                    <p id="result-label" class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Monthly Payment</p>
-                    <div id="main-result" class="text-4xl font-bold text-[#003366] mb-2 tabular-nums">$1,703.37</div>
-                    <p id="sub-result" class="text-gray-500 text-sm font-medium italic">Principal & Interest</p>
-                    <button onclick="window.print()" class="mt-8 w-full bg-[#003366] text-white font-bold py-3 rounded text-[10px] uppercase tracking-widest shadow-md hover:bg-[#002244] transition">Download PDF Report</button>
-                </div>
-            </div>
+<main class="wrapper">
+    <section class="glass-card">
+        <div class="control-group">
+            <div class="label-box"><label>Initial Capital</label><span class="current-val" id="dep-txt">$5,000</span></div>
+            <input type="range" id="dep-in" min="1000" max="100000" step="1000" value="5000">
         </div>
-    </main>
-    <footer class="mt-20 py-10 text-center text-xs text-gray-400 border-t bg-white italic tracking-tighter">© 2025 SmartCalc Financial — Professional Suite. Part of the SmartCalc Brand Network.</footer>
-    <script src="script.js"></script>
+        <div class="control-group">
+            <div class="label-box"><label>Annual Return (%)</label><span class="current-val" id="int-txt">10%</span></div>
+            <input type="range" id="int-in" min="1" max="40" step="0.5" value="10">
+        </div>
+        <div class="control-group">
+            <div class="label-box"><label>Duration</label><span class="current-val" id="year-txt">10 Years</span></div>
+            <input type="range" id="year-in" min="1" max="50" step="1" value="10">
+        </div>
+
+        <div style="background: var(--primary-soft); padding: 20px; border-radius: 16px; border-left: 4px solid var(--primary); font-size: 0.9rem;">
+            <p style="margin: 0; color: var(--text-main); font-weight: 600;">Wealth Projection</p>
+            <p id="multiplier" style="margin: 5px 0 0 0; color: var(--primary); font-weight: 800; font-size: 1.2rem;">2.6x Capital Multiplier</p>
+        </div>
+    </section>
+
+    <section class="result-panel">
+        <div class="score-label">Future Value</div>
+        <div class="score-num" id="total-val">$12,968</div>
+        <div class="profit-badge" id="profit-txt">+ $7,968 Profit</div>
+        <button class="btn-action" onclick="window.print()">Export Financial Plan</button>
+    </section>
+
+    <article class="eco-section">
+        <h3 style="margin-top:0">SmartCalc™ Ecosystem</h3>
+        <div class="eco-grid">
+            <a href="https://n1043mn1ght-web.github.io" class="eco-link"><strong>Health Pro</strong><br><small>Precision BMI analytics</small></a>
+            <a href="https://n1043mn1ght-web.github.io" class="eco-link"><strong>Utilities Hub</strong><br><small>Daily essential tools</small></a>
+        </div>
+    </article>
+</main>
+
+<script>
+    const depIn = document.getElementById('dep-in'), intIn = document.getElementById('int-in'), yearIn = document.getElementById('year-in'),
+          depTxt = document.getElementById('dep-txt'), intTxt = document.getElementById('int-txt'), yearTxt = document.getElementById('year-txt'),
+          totalVal = document.getElementById('total-val'), profitTxt = document.getElementById('profit-txt'), multTxt = document.getElementById('multiplier');
+
+    function update() {
+        const p = parseFloat(depIn.value), r = parseFloat(intIn.value) / 100, t = parseFloat(yearIn.value);
+        const fv = p * Math.pow((1 + r), t);
+        const profit = fv - p;
+
+        depTxt.innerText = '$' + p.toLocaleString();
+        intTxt.innerText = (r * 100).toFixed(1) + '%';
+        yearTxt.innerText = t + ' Years';
+        multTxt.innerText = (fv/p).toFixed(1) + 'x Capital Multiplier';
+
+        totalVal.innerText = '$' + Math.round(fv).toLocaleString();
+        profitTxt.innerText = '+ $' + Math.round(profit).toLocaleString() + ' Profit';
+    }
+
+    [depIn, intIn, yearIn].forEach(el => el.addEventListener('input', update));
+    update();
+</script>
 </body>
 </html>
