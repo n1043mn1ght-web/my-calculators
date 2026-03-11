@@ -2,92 +2,168 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mortgage Pro — SmartCalc™ Home Loan & Amortization Engine</title>
-    <meta name="google-site-verification" content="google5dfafccdc6f81413" />
-    <link rel="icon" type="image/png" href="dollar.png?v=4.0">
-    <link rel="apple-touch-icon" href="dollar.png">
-    <meta name="description" content="Professional mortgage analytics. Calculate monthly payments and total interest with SmartCalc™ precision.">
-    <link rel="canonical" href="https://n1043mn1ght-web.github.io" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator 2026 | SmartCalc™ Official</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --primary: #6366f1; --dark: #0f172a; --bg: #f1f5f9; --text: #1e293b; --muted: #64748b; }
-        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; font-family: 'Inter', sans-serif; }
-        body { margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; font-size: 14px; }
-        header { background: var(--dark); color: white; padding: 0.6rem; text-align: center; border-bottom: 2px solid var(--primary); }
-        .logo { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        :root { 
+            --primary: #2563eb;
+            --bg-body: #f1f5f9;
+            --panel-steel: #cbd5e1;
+            --navy-deep: #0f172a;
+            --glass-white: rgba(255, 255, 255, 0.95);
+        }
+
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { margin: 0; background: var(--bg-body); color: var(--navy-deep); font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        header { background: #fff; padding: 0.8rem 0; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
+        .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 800; text-decoration: none; color: var(--navy-deep); }
         .logo span { color: var(--primary); }
-        .wrapper { max-width: 950px; margin: 10px auto; padding: 0 10px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 12px; }
-        .card { background: white; border-radius: 16px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        h2 { font-size: 0.8rem; margin: 0 0 12px 0; text-transform: uppercase; color: var(--muted); border-left: 3px solid var(--primary); padding-left: 8px; }
-        .control-group { margin-bottom: 12px; }
-        .label-box { display: flex; justify-content: space-between; margin-bottom: 2px; }
-        label { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase; }
-        .val { font-size: 1rem; font-weight: 800; }
-        input[type=range] { width: 100%; appearance: none; background: #e2e8f0; height: 4px; border-radius: 10px; outline: none; margin: 8px 0; }
-        input[type=range]::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; background: white; border: 4px solid var(--primary); border-radius: 50%; cursor: pointer; }
-        .res-panel { text-align: center; display: flex; flex-direction: column; justify-content: center; }
-        .total-num { font-size: 2.8rem; font-weight: 900; color: var(--dark); margin: 0; letter-spacing: -1px; line-height: 1; }
-        .badge { display: inline-block; padding: 4px 10px; border-radius: 50px; font-weight: 800; background: #eef2ff; color: var(--primary); font-size: 0.75rem; margin-top: 5px; }
-        .comp-info { margin-top: 12px; font-size: 0.75rem; color: var(--muted); padding: 8px; background: #f8fafc; border-radius: 8px; }
-        .chart { height: 6px; background: #e2e8f0; border-radius: 10px; margin: 12px 0 6px; display: flex; overflow: hidden; }
-        #ch-p { background: var(--dark); transition: 0.5s; }
-        #ch-i { background: var(--primary); transition: 0.5s; }
-        .eco-nav { grid-column: span 2; display: flex; justify-content: center; gap: 15px; padding: 6px; border-top: 1px solid #e2e8f0; }
-        .eco-nav a { font-size: 0.6rem; font-weight: 800; color: var(--muted); text-decoration: none; text-transform: uppercase; }
-        .btn { width: 100%; margin-top: 12px; padding: 10px; border: none; border-radius: 8px; background: var(--dark); color: white; font-weight: 700; cursor: pointer; font-size: 0.8rem; }
-        .seo-article { max-width: 950px; margin: 20px auto; padding: 25px; background: white; border-radius: 16px; border: 1px solid #e2e8f0; line-height: 1.7; color: #475569; }
-        @media (max-width: 700px) { .wrapper { grid-template-columns: 1fr; } .total-num { font-size: 2.2rem; } }
+
+        .container { max-width: 1200px; margin: 25px auto; padding: 0 20px; }
+        
+        .hero-section { 
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 25px; 
+            background: var(--panel-steel); padding: 35px; border-radius: 30px;
+            border: 1px solid #94a3b8; box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        }
+
+        .input-card { background: var(--glass-white); border-radius: 18px; padding: 20px; margin-bottom: 12px; border: 1px solid #e2e8f0; }
+        .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        label { font-size: 0.75rem; font-weight: 800; color: var(--navy-deep); text-transform: uppercase; }
+        .val-display { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+
+        input[type=range] { width: 100%; appearance: none; background: #e2e8f0; height: 5px; border-radius: 10px; outline: none; }
+        input[type=range]::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; background: var(--primary); border: 4px solid #fff; border-radius: 50%; cursor: pointer; }
+
+        .chip { padding: 8px 15px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: 0.2s; }
+        .chip.active { background: var(--navy-deep); color: #fff; }
+
+        .result-panel { background: var(--navy-deep); color: #fff; border-radius: 25px; padding: 40px; text-align: center; }
+        .res-main { font-size: 4rem; font-weight: 800; margin: 10px 0; letter-spacing: -2px; line-height: 1; }
+
+        /* ИНСАЙТ БЛОК */
+        .insight-box {
+            background: rgba(37, 99, 235, 0.1); border: 1px solid var(--primary);
+            padding: 15px; border-radius: 15px; margin-top: 20px; font-size: 0.9rem; color: #fff; text-align: left;
+        }
+
+        .stat-grid { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: left; }
+        .stat-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .stat-row span { color: #94a3b8; }
+
+        .content-area { margin-top: 40px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
+        .article h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; }
+        .article p { font-size: 1.05rem; color: #475569; line-height: 1.6; }
+
+        @media (max-width: 1000px) { .hero-section, .content-area { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-<header><div class="logo">Smart<span>Calc</span> Mortgage</div></header>
-<main class="wrapper">
-    <section class="card">
-        <h2>Loan Details</h2>
-        <div class="control-group">
-            <div class="label-box"><label>Home Price</label><span class="val" id="p-t">$300,000</span></div>
-            <input type="range" id="p-i" min="50000" max="1000000" step="5000" value="300000">
+
+<header>
+    <div class="header-inner">
+        <a href="#" class="logo">Smart<span>Calc</span>™</a>
+        <div style="font-size: 0.7rem; font-weight: 800; color: #16a34a;">✓ AUTHORITY RANK #1</div>
+    </div>
+</header>
+
+<div class="container">
+    <section class="hero-section">
+        <div class="engine-left">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0 0 10px;">Mortgage Strategy Engine</h1>
+            <div class="input-card">
+                <div class="label-row"><label>Home Valuation</label><span class="val-display" id="p-t">$0</span></div>
+                <input type="range" id="p-i" min="100000" max="3000000" step="10000" value="750000">
+            </div>
+            <div class="input-card">
+                <div class="label-row"><label>Down Payment</label><span class="val-display" id="d-t">$0</span></div>
+                <input type="range" id="d-i" min="0" max="2000000" step="5000" value="150000">
+                <div style="display:flex; gap:8px; margin-top:10px;">
+                    <div class="chip" onclick="setD(0.1)">10%</div>
+                    <div class="chip active" id="d20" onclick="setD(0.2)">20%</div>
+                    <div class="chip" onclick="setD(0.25)">25%</div>
+                </div>
+            </div>
+            <div class="input-card">
+                <div class="label-row"><label>Interest Rate (APR)</label><span class="val-display" id="r-t">0%</span></div>
+                <input type="range" id="r-i" min="1" max="20" step="0.1" value="6.5">
+            </div>
+            <div class="input-card">
+                <div class="label-row"><label>Loan Duration</label><span class="val-display" id="y-t">30y</span></div>
+                <input type="range" id="y-i" min="5" max="30" step="1" value="30">
+            </div>
         </div>
-        <div class="control-group">
-            <div class="label-box"><label>Down Payment</label><span class="val" id="d-t">$60,000</span></div>
-            <input type="range" id="d-i" min="0" max="500000" step="5000" value="60000">
+
+        <aside class="result-panel">
+            <span style="font-size:0.8rem; color:#94a3b8; font-weight:800;">MONTHLY REPAYMENT</span>
+            <div class="res-main" id="res-v">$0</div>
+            
+            <div class="insight-box" id="insight-v">
+                <b>Expert Tip:</b> Your down payment is 20%. You avoid PMI, saving roughly $180/mo.
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-row"><span>Total Interest</span> <b id="prof-v">$0</b></div>
+                <div class="stat-row" style="color:var(--primary); font-weight:800;"><span>Total Out-of-Pocket</span> <b id="total-v">$0</b></div>
+            </div>
+            <button style="width:100%; padding:18px; border:none; border-radius:12px; background:var(--primary); color:#fff; font-weight:800; margin-top:20px; cursor:pointer;" onclick="window.print()">EXPORT ANALYSIS</button>
+        </aside>
+    </section>
+
+    
+
+    <section class="content-area">
+        <div class="article">
+            <h2>Why SmartCalc™ is the Industry Standard</h2>
+            <p>In 2026, mortgage transparency is paramount. Unlike basic calculators, our engine uses precise <strong>actuarial formulas</strong> to simulate long-term debt cycles. This allows you to plan not just for a house, but for your entire financial future.</p>
+            <h3>Mastering Your APR</h3>
+            <p>A high APR can be offset by a shorter loan term. By switching from a 30-year to a 15-year mortgage, even at 10% interest, you can reduce your total interest paid by nearly 65%. Experiment with our sliders to find your optimal balance.</p>
         </div>
-        <div class="control-group">
-            <div class="label-box"><label>Rate (%)</label><span class="val" id="r-t">6.5%</span></div>
-            <input type="range" id="r-i" min="0.1" max="15" step="0.1" value="6.5">
-        </div>
-        <div class="control-group">
-            <div class="label-box"><label>Loan Term</label><span class="val" id="y-t">30y</span></div>
-            <input type="range" id="y-i" min="5" max="30" step="1" value="30">
+        <div style="background:#fff; padding:30px; border-radius:20px; border:1px solid #e2e8f0;">
+            <h3 style="margin-top:0">Quick Check</h3>
+            <p id="health-check" style="font-size:0.95rem; color:#475569;">Your monthly payment is healthy for a household income of $120,000+.</p>
         </div>
     </section>
-    <section class="card res-panel">
-        <label>Monthly Payment</label>
-        <div class="total-num" id="res-v">$0</div>
-        <div class="badge" id="prof-v">+$0 Total Interest</div>
-        <div class="comp-info" id="comp-msg">Bank Loan Analysis...</div>
-        <div class="chart"><div id="ch-p"></div><div id="ch-i"></div></div>
-        <div style="display: flex; justify-content: space-between; font-size: 0.5rem; font-weight: 800; opacity: 0.6;">
-            <span>● PRINCIPAL</span><span>● OVERPAYMENT</span>
-        </div>
-        <button class="btn" onclick="window.print()">GENERATE LOAN REPORT</button>
-    </section>
-    <nav class="eco-nav">
-        <a href="https://n1043mn1ght-web.github.io">● Health Pro</a>
-        <a href="https://n1043mn1ght-web.github.io">● Invest Pro</a>
-    </nav>
-</main>
-<article class="seo-article">
-    <h2>Professional Mortgage Analytics & Loan Forecasting</h2>
-    <p>Buying a home is one of the biggest financial decisions in life. The <strong>SmartCalc™ Mortgage Pro</strong> engine helps you visualize the true cost of ownership by calculating principal and interest payments with bank-grade accuracy.</p>
-    <h3>Understanding Your Amortization</h3>
-    <p>Our tool breaks down the ratio between your original loan amount and the total interest paid over long horizons. By adjusting the <em>Down Payment</em> and <em>Rate</em>, you can find the optimal strategy to minimize bank overpayments.</p>
-</article>
-<footer><p style="text-align:center; padding: 15px; font-size: 0.7rem; color: var(--muted);">&copy; 2024 SmartCalc™ Ecosystem.</p></footer>
+</div>
+
+<footer>&copy; 2026 SmartCalc™ Authority — The #1 Mortgage Tool on the Web.</footer>
+
 <script>
     const p_i = document.getElementById('p-i'), d_i = document.getElementById('d-i'), r_i = document.getElementById('r-i'), y_i = document.getElementById('y-i');
+    const f = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+
+    function setD(pct) { d_i.value = p_i.value * pct; update(); }
+
     function update() {
-        const price = parseFloat(p_i.value), down = parseFloat(d_i.value);
-        const L = price - down;
-        const r = (parseFloat(r_i.value)/100)/12, n = parseFloat(y_i.value)*12;
-        let monthly = L * (r * Math.pow(1 +
+        const p = parseFloat(p_i.value), d = parseFloat(d_i.value), r = (parseFloat(r_i.value)/100)/12, y = parseFloat(y_i.value)*12;
+        const loan = p - d;
+        let monthly = (r > 0) ? loan * (r * Math.pow(1 + r, y)) / (Math.pow(1 + r, y) - 1) : loan / y;
+        
+        document.getElementById('p-t').innerText = f.format(p);
+        document.getElementById('d-t').innerText = f.format(d);
+        document.getElementById('r-t').innerText = r_i.value + '%';
+        document.getElementById('y-t').innerText = y_i.value + 'y';
+        
+        document.getElementById('res-v').innerText = f.format(monthly);
+        document.getElementById('prof-v').innerText = f.format((monthly * y) - loan);
+        document.getElementById('total-v').innerText = f.format(monthly * y);
+
+        // ДИНАМИЧЕСКИЕ СОВЕТЫ
+        let insight = "<b>Tip:</b> Increase down payment to 20% to remove PMI insurance.";
+        if ((d/p) >= 0.2) insight = "<b>Expert View:</b> Great! 20% down payment secures the best rates and eliminates PMI.";
+        if (r_i.value > 10) insight = "<b>Warning:</b> High APR detected. Consider a shorter term to save on interest.";
+        document.getElementById('insight-v').innerHTML = insight;
+        
+        document.getElementById('health-check').innerText = `To comfortably afford this, a household income of ${f.format(monthly * 40)}/year is recommended.`;
+    }
+
+    [p_i, d_i, r_i, y_i].forEach(el => el.addEventListener('input', update));
+    update();
+</script>
+</body>
+</html>
