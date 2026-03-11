@@ -97,7 +97,8 @@
 <header>
     <div class="header-inner">
         <a href="https://n1043mn1ght-web.github.io" class="logo">Smart<span>Calc</span>™</a>
-        <div style="font-size: 0.7rem; font-weight: 800; color: #2563eb; letter-spacing: 1px;">✓ AUTHORITY RANK #1</div>
+        <!-- Добавлен класс authority-badge для пульсации (убедитесь, что CSS в <head> добавлен) -->
+        <div class="authority-badge" style="font-size: 0.7rem; font-weight: 800; color: #2563eb; letter-spacing: 1px;">✓ AUTHORITY RANK #1</div>
     </div>
 </header>
 
@@ -109,61 +110,60 @@
 
             <div class="input-card">
                 <div class="label-row"><label>Loan Amount</label><div class="val-display">$<span id="p-v">350,000</span></div></div>
-                <input type="range" id="p-i" min="50000" max="1000000" step="5000" value="350000">
+                <input type="range" id="p-i" min="10000" max="1000000" step="5000" value="350000">
             </div>
 
             <div class="input-card">
                 <div class="label-row"><label>Interest Rate (%)</label><div class="val-display"><span id="r-v">6.5</span>%</div></div>
-                <input type="range" id="r-i" min="1" max="15" step="0.1" value="6.5">
+                <input type="range" id="r-i" min="0.1" max="15" step="0.1" value="6.5">
             </div>
 
             <div class="input-card">
                 <div class="label-row"><label>Loan Term (Years)</label><div class="val-display"><span id="t-v">30</span>y</div></div>
-                <input type="range" id="t-i" min="5" max="30" step="5" value="30">
+                <!-- Шаг изменен на 1 год для максимальной точности -->
+                <input type="range" id="t-i" min="1" max="40" step="1" value="30">
             </div>
 
-            <!-- БЛОК STRATEGIC INSIGHT -->
             <div class="insight-box" id="strat-msg" style="color: #1e293b; background: rgba(37, 99, 235, 0.05); border: 1px solid var(--primary); padding: 20px; border-radius: 18px; margin-top: 20px; font-size: 0.9rem;">
-                <strong>💡 Strategic Note:</strong> At a 6.5% rate, your total interest paid over 30 years will be significant. Consider a 20-year term to save on total costs.
+                <strong>💡 Strategic Note:</strong> Adjust the sliders to see real-time amortization impact.
             </div>
         </div>
 
-        <div class="result-panel">
-            <div class="res-label" style="color: #94a3b8;">Monthly Payment</div>
-            <div class="res-main">$<span id="res-m">2,212</span></div>
+        <div class="result-panel" style="background: var(--navy-deep); color: #fff;">
+            <div class="res-label" style="color: #cbd5e1; opacity: 0.9;">Monthly Payment</div>
+            <div class="res-main" style="color: #ffffff;">$<span id="res-m">2,212</span></div>
             
             <div class="stat-grid" style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px;">
-                <div class="stat-row"><span>Total Interest</span><strong id="res-ti">$446,401</strong></div>
-                <div class="stat-row"><span>Total Payoff</span><strong id="res-tp">$796,401</strong></div>
+                <div class="stat-row"><span style="color: #94a3b8;">Total Interest</span><strong id="res-ti" style="color: #fff;">$446,401</strong></div>
+                <div class="stat-row"><span style="color: #94a3b8;">Total Payoff</span><strong id="res-tp" style="color: #fff;">$796,401</strong></div>
             </div>
 
-            <button style="width:100%; padding:18px; border:none; border-radius:15px; background:var(--primary); color:#fff; font-weight:800; margin-top:30px; cursor:pointer; transition: 0.3s;" onclick="window.print()">GENERATE AMORTIZATION PDF</button>
+            <button style="width:100%; padding:18px; border:none; border-radius:15px; background:var(--primary); color:#fff; font-weight:800; margin-top:30px; cursor:pointer;" onclick="window.print()">GENERATE AMORTIZATION PDF</button>
         </div>
     </div>
 
-    <!-- БЛОК COMPARE & ACT: СТРАТЕГИИ ОПТИМИЗАЦИИ -->
     <div class="content-area" style="margin-top: 50px;">
         <div class="article">
             <h2>Financial Impact Analysis</h2>
-            <p>Our <strong>SmartCalc™ Mortgage Engine</strong> goes beyond simple math. We analyze your debt-to-income ratio potential and interest amortization schedules to ensure your home remains an asset, not a liability.</p>
+            <p>Our <strong>SmartCalc™ Mortgage Engine</strong> is optimized for 2026 economic standards. We provide insights into interest savings through accelerated payment strategies.</p>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
-                <div id="card-20" style="padding: 20px; border: 1px solid #e2e8f0; border-radius: 20px; background: #fff;">
+                <div style="padding: 20px; border: 1px solid #e2e8f0; border-radius: 20px; background: #fff;">
                     <h4 style="margin: 0 0 10px; color: var(--primary);">20% Down Payment</h4>
-                    <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Avoiding Private Mortgage Insurance (PMI) can save you between $150 and $400 monthly.</p>
+                    <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Eliminating PMI (insurance) can save thousands over the loan life.</p>
                 </div>
-                <div id="card-extra" style="padding: 20px; border: 1px solid #e2e8f0; border-radius: 20px; background: #fff;">
-                    <h4 style="margin: 0 0 10px; color: var(--primary);">Extra Principal</h4>
-                    <p style="font-size: 0.85rem; color: #64748b; margin: 0;">One extra payment per year can reduce a 30-year mortgage by up to 5 years.</p>
+                <div style="padding: 20px; border: 1px solid #e2e8f0; border-radius: 20px; background: #fff;">
+                    <h4 style="margin: 0 0 10px; color: var(--primary);">Term Reduction</h4>
+                    <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Switching from 30 to 15 years can cut interest costs by up to 60%.</p>
                 </div>
             </div>
         </div>
 
         <div style="background: var(--navy-deep); color: #fff; padding: 35px; border-radius: 30px;">
-            <h3 style="margin-top: 0; font-family: 'Playfair Display', serif;">Strategic FAQ</h3>
-            <div style="font-size: 0.9rem; line-height: 1.6; color: #94a3b8;">
-                <p><strong style="color: #fff;">Fixed vs Variable?</strong> 2026 standards suggest fixed rates for long-term stability in volatile markets.</p>
-                <p><strong style="color: #fff;">What is APR?</strong> The Annual Percentage Rate includes fees and points, showing the true cost of the loan.</p>
+            <h3 style="margin-top: 0; font-family: 'Playfair Display', serif; color: #ffffff;">Strategic FAQ</h3>
+            <div style="font-size: 0.9rem; line-height: 1.6; color: #f1f5f9;">
+                <p><strong style="color: #fff;">Fixed vs Variable?</strong> Fixed rates offer security in 2026 market volatility.</p>
+                <p><strong style="color: #fff;">Refinancing?</strong> Lowering your rate by even 1% justifies most closing costs.</p>
             </div>
         </div>
     </div>
@@ -173,7 +173,7 @@
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         &copy; 2026 SmartCalc™ Authority — The #1 Mortgage Tool on the Web.
         <p style="font-size: 0.7rem; color: #94a3b8; max-width: 800px; margin: 20px auto; line-height: 1.5;">
-            Disclaimer: The SmartCalc™ Mortgage Engine provides estimations for informational purposes only. Actual rates and payments may vary based on lender policies, credit scores, and market conditions. This is not a financial commitment.
+            Disclaimer: The SmartCalc™ Mortgage Engine provides estimations for informational purposes only. Actual rates and payments may vary. This is not a financial commitment.
         </p>
     </div>
 </footer>
@@ -185,13 +185,14 @@
 
     function update() {
         const P = parseFloat(pIn.value);
-        const r = parseFloat(rIn.value) / 100 / 12;
+        const r = (parseFloat(rIn.value) / 100) / 12;
         const n = parseFloat(tIn.value) * 12;
 
         document.getElementById('p-v').innerText = P.toLocaleString();
         document.getElementById('r-v').innerText = rIn.value;
         document.getElementById('t-v').innerText = tIn.value;
 
+        // Расчет аннуитетного платежа
         const M = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
         const totalPayoff = M * n;
         const totalInterest = totalPayoff - P;
@@ -200,13 +201,12 @@
         document.getElementById('res-ti').innerText = '$' + Math.round(totalInterest).toLocaleString();
         document.getElementById('res-tp').innerText = '$' + Math.round(totalPayoff).toLocaleString();
 
-        // Dynamic Insights
         const stratMsg = document.getElementById('strat-msg');
-        if (parseFloat(rIn.value) > 7) {
-            stratMsg.innerHTML = "<strong>⚠️ High Interest Alert:</strong> Rates above 7% significantly increase total payoff. Consider refinancing when rates drop.";
+        if (parseFloat(rIn.value) > 7.5) {
+            stratMsg.innerHTML = "<strong>⚠️ Interest Alert:</strong> High rates detected. Focus on maximizing down payment to reduce total debt.";
             stratMsg.style.borderColor = "#e74c3c";
         } else {
-            stratMsg.innerHTML = "<strong>💡 Strategic Note:</strong> Your current rate is within competitive 2026 margins. Focus on principal reduction.";
+            stratMsg.innerHTML = "<strong>💡 Strategic Note:</strong> This rate is competitive for 2026. Review your credit score for even better deals.";
             stratMsg.style.borderColor = "#2563eb";
         }
     }
@@ -216,7 +216,9 @@
 </script>
 </body>
 
+
 </html>
+
 
 
 
